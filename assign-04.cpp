@@ -3,7 +3,6 @@
 // Date:December 05 2025
 // This program uses a for loop calculate the
 // factors of the number entered by the user
-
 #include <iostream>
 #include <stdexcept>  // for std::runtime_error
 
@@ -12,8 +11,9 @@ int main() {
         int num;
         std::cout << "Enter a positive integer: ";
 
-        if (std::cin >> num) {
-        std::runtime_error("Invalid input! Please enter a valid integer.");
+        // Proper input validation
+        if (!(std::cin >> num)) {
+    std::cout << "Invalid input! Please enter a valid integer." << std::endl;
         }
 
         if (num <= 0) {
@@ -21,19 +21,14 @@ int main() {
         } else {
             std::cout << "Factors of " << num << " are:" << std::endl;
 
-            int i = 1;
-            while (i <= num) {
+            // Use a for loop
+            for (int i = 1; i <= num; ++i) {
                 if (num % i == 0) {
                     std::cout << i << std::endl;
                 }
-                i++;
             }
         }
     } catch (const std::runtime_error& e) {
-        // Handles invalid input
-        std::cout << e.what() << std::endl;
-    } catch (...) {
-        // Catches any other unexpected exceptions
-        std::cout << "An unexpected error occurred." << std::endl;
+        std::cout << "An error occurred: " << std::endl;
     }
 }
